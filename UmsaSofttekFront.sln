@@ -5,6 +5,8 @@ VisualStudioVersion = 17.7.34003.232
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UmsaSofttekFront", "UmsaSofttekFront\UmsaSofttekFront.csproj", "{99F7E6D9-46C3-4E41-B71E-4F38988C8A5E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{2A66868C-88E9-4381-B989-74AF967AD376}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{99F7E6D9-46C3-4E41-B71E-4F38988C8A5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99F7E6D9-46C3-4E41-B71E-4F38988C8A5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99F7E6D9-46C3-4E41-B71E-4F38988C8A5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A66868C-88E9-4381-B989-74AF967AD376}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A66868C-88E9-4381-B989-74AF967AD376}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A66868C-88E9-4381-B989-74AF967AD376}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A66868C-88E9-4381-B989-74AF967AD376}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
