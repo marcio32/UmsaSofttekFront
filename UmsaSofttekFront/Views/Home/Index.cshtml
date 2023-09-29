@@ -1,11 +1,13 @@
-﻿@model UmsaSofttekFront.Models.Login
+﻿@model UmsaSofttekFront.ViewModels.HomeViewModel
 @{
     ViewData["Title"] = "Home Page";
-   @Html.NameFor(x => x.Email)
+    
 }
+
+@Html.HiddenFor(x=> x.Token);
 
 <div class="text-center">
     <h1 class="display-4">Bienvenidos a umsa Softtek</h1>
-  
-   
 </div>
+
+<script src="~/js/Home/Home.js"> </script>

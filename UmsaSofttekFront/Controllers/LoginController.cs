@@ -1,8 +1,12 @@
 ﻿using Data.Base;
 using Data.DTOs;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Security.Claims;
 using System.Text.Json;
+using UmsaSofttekFront.ViewModels;
 
 namespace UmsaSofttekFront.Controllers
 {
@@ -25,9 +29,32 @@ namespace UmsaSofttekFront.Controllers
             var token = await baseApi.PostToApi("Login", login);
             var resultadoLogin = token as OkObjectResult;
             var resultadoObjeto = JsonConvert.DeserializeObject<Models.Login>(resultadoLogin.Value.ToString());
-            ViewBag.Nombre = resultadoObjeto.FirstName;
-            ViewBag.Apellido = resultadoObjeto.FirstName;
-            return View("~/Views/Home/Index.cshtml", resultadoObjeto);
+
+            var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme, ClaimTypes.Name, ClaimTypes.Role);
+            Claim claimRole = new(ClaimTypes.Role, "Adminitrador");
+        
+            identity.AddClaim(claimRole);
+           
+            var claimPrincipal = new ClaimsPrincipal(identity);
+
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimPrincipal, new AuthenticationProperties
+            {
+                ExpiresUtc = DateTime.Now.AddHours(1),
+            });
+
+            HttpContext.Session.SetString("Token", resultadoObjeto.Token);
+
+            var homeViewModel = new HomeViewModel();
+            homeViewModel.Token = resultadoObjeto.Token;
+
+            return View("~/Views/Home/Index.cshtml", homeViewModel);
+        }
+
+
+        public async Task<IActionResult> CerrarSesion()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Login", "Login");
         }
     }
 }
